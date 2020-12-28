@@ -15,4 +15,9 @@ class Category {
     data['name'] = this.name;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Category{id: $id, name: $name}';
+  }
 }

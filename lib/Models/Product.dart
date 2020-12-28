@@ -37,4 +37,9 @@ class Product {
     data['price'] = this.price;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Product{id: $id, name: $name, slug: $slug, illustration: $illustration, subtitle: $subtitle, description: $description, price: $price}';
+  }
 }
