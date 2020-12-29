@@ -45,4 +45,9 @@ class Order {
     data['reference'] = this.reference;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Order{id: $id, createdAt: $createdAt, total: $total, carrierName: $carrierName, carrierPrice: $carrierPrice, adress: $adress, orderDetails: $orderDetails, isPaid: $isPaid, reference: $reference}';
+  }
 }

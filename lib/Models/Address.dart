@@ -49,4 +49,9 @@ class Address {
     data['phone'] = this.phone;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Address{id: $id, name: $name, firstname: $firstname, lastname: $lastname, compagny: $compagny, address: $address, postal: $postal, city: $city, country: $country, phone: $phone}';
+  }
 }

@@ -1,15 +1,18 @@
 import 'dart:convert';
 
+import 'package:richcommerce/Managers/ApiManagers/Util.dart';
 import 'package:richcommerce/Models/Product.dart';
 import 'package:http/http.dart' as http;
 import 'package:richcommerce/contants/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductsManager {
-  String url = "$kApiUrl/products";
+  String url = "$kApiEndpoint/products";
   String attr = "hydra:member";
 
   Future<List<Product>> findAll() async {
-    final response = await http.get('$url');
+    final response = await Util.makeAuthenticatedGetRequest(url);
+
     print(response.statusCode);
 
     if (response.statusCode == 200) {
@@ -25,7 +28,6 @@ class ProductsManager {
         result.add(Product.fromJson(jsonProduct));
       }
       return result;
-
     } else {
       print("Error");
       // If the server did not return a 200 OK response,
@@ -46,7 +48,8 @@ class ProductsManager {
 
       print("success");
       return Product.fromJson(jsonResponse);
-
+    } else if (response.statusCode == 404) {
+      return null;
     } else {
       print("Error");
       // If the server did not return a 200 OK response,
@@ -54,7 +57,4 @@ class ProductsManager {
       throw Exception('Failed to load product');
     }
   }
-
-
-
 }
